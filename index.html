@@ -34,7 +34,7 @@
 				<form class="space-y-5">
 					<div>
 						<label class="flex items-center gap-2 text-slate-700 font-medium text-sm mb-2">
-							<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Product ID
+							<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Product Sequence
 						</label>
 						<input id="productId" type="number" placeholder="001" class="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 focus:bg-white -translate-y-0 focus:-translate-y-0.5 transition-all duration-200"/>
 					</div>
@@ -55,19 +55,22 @@
 					
 					<div>
 						<label class="flex items-center gap-2 text-slate-700 font-medium text-sm mb-2">
+							<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Product Price
+						</label>
+						<input id="productPrice" type="number" placeholder="₹Rupees" class="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 focus:bg-white -translate-y-0 focus:-translate-y-0.5 transition-all duration-200"/>
+
+					</div>
+					
+					
+					<div>
+						<label class="flex items-center gap-2 text-slate-700 font-medium text-sm mb-2">
 							<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Product Image URL
 						</label>
 						<input id="productImage" type="text" placeholder="https://example.com/image.jpg" class="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 focus:bg-white -translate-y-0 focus:-translate-y-0.5 transition-all duration-200"/>
 
 					</div>
 					
-					<!--<div>
-						<label class="flex items-center gap-2 text-slate-700 font-medium text-sm mb-2">
-							<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Product Image
-						</label>
-						<input id="productImage" type="text" class="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 focus:bg-white transition-all duration-200"/>
-						<img src="${p.image}" class="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 focus:bg-white transition-all duration-200"/>
-					</div>-->
+					
 					
 					<div class="pt-2">
 						<button onclick="addproduct()" type="button" class="w-full bg-gradient-to-r from-emerald-800 to-emerald-600 hover:from-emerald-700 hover:to-emerald-500 text-white font-medium text-sm py-3.5 px-6 rounded-xl shadow-lg shadow-emerald-700/20 hover:shadow-xl hover:shadow-emerald-700/30 active:scale-[0.99] transition-all duration-200 cursor-pointer">
