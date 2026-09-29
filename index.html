@@ -162,7 +162,7 @@
 				
 				
 
-				products = {
+				var products = {
 					seq: seq,
 					name: name,
 					desc: desc,
@@ -180,23 +180,24 @@
 				document.getElementById('productPrice').value ='';
 
 
-					
+				displayproducts();
 				console.log('productList');
 				 
-				
+			}	
+			
+			function displayproducts(){
 				var container = document.getElementById('card-con');
 				container.innerHTML ='';
 				
 				
-				for(var i = 0 ; i < products.length ; i++){
-					var p = products[i];
+				for(var i = 0 ; i < productList.length ; i++){
+					var p = productList[i];
 					
 					container.innerHTML = container.innerHTML +`
 					<div class="w-full max-w-sm bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
 						
                         <img src="${p.image}" alt="${p.name}" class="w-full h-48 object-cover bg-gray-100"/>
-						<button onclick="removeProduct(${i})" class="absolute top-2 right-2 w-8 h-8 rounded-full bg-white text-slate-800 font-bold shadow-lg hover:bg-red-500 hover:text-white transition-all">
-
+						<button onclick="crossproduct(${i})" class="absolute top-2 right-2 w-8 h-8 rounded-full bg-white text-slate-800 font-bold shadow-lg hover:bg-red-500 hover:text-white transition-all">
                             ✕
                         </button>
                         <div class="p-5 space-y-2">
@@ -209,22 +210,24 @@
                     </div>
 					`;
 				}
-				console.log(products);
 			}
 			
 			function pop(){
-				products.pop();
+				productList.pop();
 				
 				var container = document.getElementById('card-con');
 				container.innerHTML = '';
 				
-				for(var i = 0 ; i < products.length ; i++){
-					var p = products[i];
+				for(var i = 0 ; i < productList.length ; i++){
+					var p = productList[i];
 					
 					container.innerHTML = container.innerHTML +`
 					
 					<div class="w-full max-w-sm bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
                         <img src="${p.image}" alt="${p.name}" class="w-full h-48 object-cover bg-gray-100"/>
+						<button onclick="crossproduct(${i})" class="absolute top-2 right-2 w-8 h-8 rounded-full bg-white text-slate-800 font-bold shadow-lg hover:bg-red-500 hover:text-white transition-all">
+                            ✕
+                        </button>
                         <div class="p-5 space-y-2">
                             <p class="text-xs font-semibold text-emerald-600 uppercase tracking-wide">Sequence: <span>${p.seq}</span></p>
                             <h3 class="text-lg font-bold text-gray-900"> Name : <span>${p.name}</span></h3>
@@ -234,13 +237,15 @@
                     </div>
 					`;
 				}
-				console.log(products);
+				console.log(productList);
 			}
 			
-			function removeProduct(){
+			function crossproduct(index){
 				
-				Products.splice();
-				console.log(products);
+				
+				productList.splice(index , 1);
+				displayproducts();
+				console.log(productList);
 			}
 		</script>
 		
