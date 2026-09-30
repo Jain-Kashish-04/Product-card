@@ -73,7 +73,7 @@
 					</div>
 					
 					<div class="pt-2">
-						<button onclick="addproduct()" type="button" class="w-full bg-gradient-to-r from-emerald-800 to-emerald-600 hover:from-emerald-700 hover:to-emerald-500 text-white font-medium text-sm py-3.5 px-6 rounded-xl shadow-lg shadow-emerald-700/20 hover:shadow-xl hover:shadow-emerald-700/30 active:scale-[0.99] transition-all duration-200 cursor-pointer">
+						<button onclick="productAction('add')" type="button" class="w-full bg-gradient-to-r from-emerald-800 to-emerald-600 hover:from-emerald-700 hover:to-emerald-500 text-white font-medium text-sm py-3.5 px-6 rounded-xl shadow-lg shadow-emerald-700/20 hover:shadow-xl hover:shadow-emerald-700/30 active:scale-[0.99] transition-all duration-200 cursor-pointer">
 							Submit Product
 						</button>
 					</div>
@@ -82,7 +82,7 @@
 			
 			
 			<div class="pt-2">
-				<button onclick="pop()" type="button" class="w-full bg-gradient-to-r from-emerald-800 to-emerald-600 hover:from-emerald-700 hover:to-emerald-500 text-white font-medium text-sm py-3.5 px-6 rounded-xl shadow-lg shadow-emerald-700/20 hover:shadow-xl hover:shadow-emerald-700/30 active:scale-[0.99] transition-all duration-200 cursor-pointer">
+				<button onclick="productAction('pop')" type="button" class="w-full bg-gradient-to-r from-emerald-800 to-emerald-600 hover:from-emerald-700 hover:to-emerald-500 text-white font-medium text-sm py-3.5 px-6 rounded-xl shadow-lg shadow-emerald-700/20 hover:shadow-xl hover:shadow-emerald-700/30 active:scale-[0.99] transition-all duration-200 cursor-pointer">
 					POP THE CARD
 				</button>
 			</div>
@@ -105,47 +105,55 @@
 			
 			var productList = [];
 			
-			function addproduct(){
-				var seq = document.getElementById('productSeq').value;
-				var index = document.getElementById('productIndex').value
-				var name = document.getElementById('productName').value;
-				var desc = document.getElementById('productDescription').value;
-				var image = document.getElementById('productImage').value;
-				var price = document.getElementById('productPrice').value;
+			function productAction(action , index ){
+			
+				if(action == 'add'){
+					var seq = document.getElementById('productSeq').value;
+					var index = document.getElementById('productIndex').value
+					var name = document.getElementById('productName').value;
+					var desc = document.getElementById('productDescription').value;
+					var image = document.getElementById('productImage').value;
+					var price = document.getElementById('productPrice').value;
+					
+					
+					if(index === '' || index  < 0){
+						console.log('enter a valid index number');
+						return;
+					}
+					
+
+					var products = {
+						seq: seq,
+						name: name,
+						desc: desc,
+						image: image,
+						price: price
+					};
+					
+					productList.splice(index , 0 , products);
 				
-				
-				if(index === '' || index  < 0){
-					console.log('enter a valid index number');
-					return;
+					document.getElementById('productSeq').value ='';
+					document.getElementById('productIndex').value ='';
+					document.getElementById('productName').value ='';
+					document.getElementById('productDescription').value ='';
+					document.getElementById('productImage').value ='';
+					document.getElementById('productPrice').value ='';
+
 				}
-				
-
-				var products = {
-					seq: seq,
-					name: name,
-					desc: desc,
-					image: image,
-					price: price
-				};
-				
-				productList.splice(index , 0 , products);
 			
-				document.getElementById('productSeq').value ='';
-				document.getElementById('productIndex').value ='';
-				document.getElementById('productName').value ='';
-				document.getElementById('productDescription').value ='';
-				document.getElementById('productImage').value ='';
-				document.getElementById('productPrice').value ='';
+					
+			else if (action == 'pop') {
 
-
-				displayproducts();
-				console.log('productList');
-				 
-			}	
-			
-			
-			function displayproducts(){
+				productList.pop();
 				
+			}
+		
+			else if (action == 'delete'){
+				
+				productList.splice(index , 1);
+				
+			}
+			
 				var container = document.getElementById('card-con');
 				container.innerHTML = '';
 				
@@ -156,7 +164,7 @@
 					
 					<div class="relative w-full max-w-sm bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
                         <img src="${p.image}" alt="${p.name}" class="w-full h-48 object-cover bg-gray-100"/>
-						<button onclick="crossproduct(${i})" class="absolute top-2 right-2 w-8 h-8 rounded-full bg-white text-slate-800 font-bold shadow-lg hover:bg-red-500 hover:text-white transition-all">
+						<button onclick="productAction('delete' ,${i})" class="absolute top-2 right-2 w-8 h-8 rounded-full bg-white text-slate-800 font-bold shadow-lg hover:bg-red-500 hover:text-white transition-all">
                             ✕
                         </button>
                         <div class="p-5 space-y-2">
@@ -168,23 +176,11 @@
                     </div>
 					`;
 				}
+				
+				console.log(productList);
 			}
 			
-				
-			function pop() {
-
-				productList.pop();
-				displayProducts();
-				console.log(productList);
-
-			}
 		
-			function crossproduct(index){
-				
-				productList.splice(index , 1);
-				displayproducts();
-				console.log(productList);
-			}
 		</script>
 		
 	</body>
